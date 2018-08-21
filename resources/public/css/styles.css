@@ -1,0 +1,11 @@
+/*
+box model reset - border box everywhere
+this makes it much easier to mix paddings/margin and
+grid classes
+*/
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
