@@ -14,8 +14,8 @@
    [clojure.string :as string]
    [clojure.repl]
    [clojure.tools.namespace.repl :refer [refresh]]
-   [ifskel.core]
-   [ifskel.db]
+   [ifskel.server]
+   [ifskel.server.db]
    [immutant.web :as web]
    )
   (:import
@@ -57,8 +57,8 @@
   "Start all the things"
   []
   (start-embedded-pg)
-  (ifskel.db/schema-migrate)
-  (web/run-dmc ifskel.core/app))
+  (ifskel.server.db/schema-migrate)
+  (web/run-dmc ifskel.server/app))
 
 (defn stop
   "... and stop it again"

@@ -41,8 +41,24 @@ FIXME
 
 #Deployment
 
-FIXME
+##Configuring Wildfly
 
+Start your wildfly instance and deploy the postgresql JDBC driver.
+To do this, start `jboss-cli` and do a
+
+    deploy C:\Users\gj\.m2\repository\org\postgresql\postgresql\42.2.4\postgresql-42.2.4.jar
+
+Next, using HAL, configure the datasource under the name `PostgresDS`
+
+##Build a war file and deploy it
+
+To build and deploy
+
+    lein clean
+    lein fig:min
+    lein with-profile production immutant war -o C:\users\gj\wildfly-13.0.0.Final
+
+XXX this does not actually work yet
 
 ## License
 

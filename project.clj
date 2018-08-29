@@ -7,7 +7,7 @@
                  ;;
                  ;; BACKEND
                  ;;
-                 ;; 
+                 ;;
                  ;; immutant: webserver/cache/messaging
                  ;; tools.logging: for logging
                  ;; tools.namespace: refresh!!!
@@ -24,13 +24,17 @@
                  ;;
                  ;; FRONTEND
                  ;;
-                 ;; figwheel-main: clojurescript re-compilation, hot-reloading
+                 ;; figwheel-main:
+                 ;; clojurescript re-compilation, hot-reloading
                  ;;
-                 ;; XXX:
-                 ;; kibit/eastwood
                  ;; figwheel-main
                  ;; reagent
                  ;; metosin/compojure-api: SWAGGER! (prismatic) schema!
+                 ;;
+                 ;; Recommended for :user profile (.lein/profiles.clj)
+                 ;;
+                 ;; kibit
+                 ;; eastwood
                  [org.immutant/immutant "2.1.10"]
                  [org.clojure/tools.logging "0.4.1"]
                  [org.clojure/tools.namespace "0.2.11"]
@@ -48,10 +52,13 @@
    ;; "fig" ["trampoline" "run" "-m" "figwheel.main"]
    "fig" ["run" "-m" "figwheel.main" "-b" "dev" "-r"]
    "fig:min" ["run" "-m" "figwheel.main" "-O" "advanced" "-bo" "dev"]
+   ;; "fig:prod" ["run" "-m" "figwheel.main" "-O" "advanced" "-bo" "production"]
    }
 
   :main ^:skip-aot ifskel.server
   :target-path "target/%s"
+
+  :plugins [[lein-immutant "2.1.0"]]
 
   :profiles {:dev
              {:env {:db-class "org.postgresql.Driver"
@@ -77,6 +84,7 @@
                              ]
               :plugins [[lein-environ "1.1.0"]]
               :source-paths ["dev"]
+              ;; so cljs compilation results are picked up
               :resource-paths ["target"]
               :clean-targets ^{:protect false} ["target"]}
              :uberjar {:aot :all}})
