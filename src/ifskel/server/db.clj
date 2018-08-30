@@ -16,19 +16,26 @@
   * Configure all parts of the URL: class, protocol, name, user, pass
   "
   []
-  {:classname (:db-class env)
-   :subprotocol (:db-proto env)
-   :subname (or (:db-name env)
-                (System/getProperty "db.name"))
-   :user (:db-user env)
-   :password (:db-pass env)})
+  (if (or (:db-proto env) (:db-name env))
+    ;; dev-mode, use configured db from env
+    {:classname (:db-class env)
+     :subprotocol (:db-proto env)
+     :subname (or (:db-name env)
+                  (System/getProperty "db.name"))
+     :user (:db-user env)
+     :password (:db-pass env)}
+    ;; deployed, suricatta wants a datasource
+    (let [ctx (javax.naming.InitialContext.)]
+      (.lookup (javax.naming.InitialContext.) "PostgresDS"))))
+
+
 
 (defn- ragtime-config []
   {:datastore (ragtime.jdbc/sql-database (env-dbspec))
    :migrations (ragtime.jdbc/load-resources
                 (str "migrations/" (:db-proto env)))})
 
-(defn schema-migrate []
+(defn run-migrations []
   (ragtime.repl/migrate (ragtime-config)))
 
 

@@ -43,7 +43,7 @@
    [:ul
     (for [todo @todos]
       [:li
-       (:ifskel.db/todo todo)])]
+       (:ifskel.server.db/todo todo)])]
    [:button {:on-click #(get-todos)} "Get Todos"]
    ])
 

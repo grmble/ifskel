@@ -56,10 +56,29 @@ To build and deploy
 
     lein clean
     lein fig:min
-    cp target/public/cljs-out/dev-main.js cljs-resources/public/cljs-out/
-    lein with-profile production immutant war -o C:\users\gj\wildfly-13.0.0.Final
+    lein js:cp
+    lein war:cp -o c:\users\gj\wildfly-13.0.0.Final
 
-XXX make this easier (lein shell && lein do)
+The directory name can be configured as :immutant :war :destination,
+If you provide this in an :immutant profile in your profiles.clj,
+you do not have to specify the directory every time.
+
+There is a handly alias that executes all the steps from above:
+
+    lein war:all
+
+XXX running migrations does not work in deployed mode.
+Ragtime can not find the resources ... in particular,
+it can't list the directory content - classloader bullshit.
+
+Current recommendation: point the repl at the prod db and run the
+migrations.  Copy the url starting with // from your standalone.xml.
+
+
+    lein repl
+    (System/setProperty "db.name" "//192.168.56.3/postgres?user=postgres&password=postgres")
+    (db/run-migrations)
+
 
 ## License
 

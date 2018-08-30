@@ -57,7 +57,7 @@
   "Start all the things"
   []
   (start-embedded-pg)
-  (ifskel.server.db/schema-migrate)
+  (ifskel.server.db/run-migrations)
   (web/run-dmc ifskel.server/app))
 
 (defn stop

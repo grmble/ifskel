@@ -57,7 +57,9 @@
    ;; "fig" ["trampoline" "run" "-m" "figwheel.main"]
    "fig" ["run" "-m" "figwheel.main" "-b" "dev" "-r"]
    "fig:min" ["run" "-m" "figwheel.main" "-O" "advanced" "-bo" "dev"]
-   ;; "fig:prod" ["run" "-m" "figwheel.main" "-O" "advanced" "-bo" "production"]
+   "js:cp" ["shell" "cp" "target/public/cljs-out/dev-main.js" "cljs-resources/public/cljs-out/"]
+   "war:cp" ["with-profile" "production,immutant" "immutant" "war"]
+   "war:all" ["do" ["clean"] ["fig:min"] ["js:cp"] ["war:cp"]]
    }
 
   :main ^:skip-aot ifskel.server
@@ -87,7 +89,8 @@
                              [reagent "0.8.1"]
                              [cljs-http "0.1.45"]
                              ]
-              :plugins [[lein-environ "1.1.0"]]
+              :plugins [[lein-environ "1.1.0"]
+                        [lein-shell "0.5.0"]]
               :source-paths ["dev"]
               ;; so cljs compilation results are picked up
               :resource-paths ["target"]
