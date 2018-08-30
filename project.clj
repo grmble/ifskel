@@ -31,15 +31,20 @@
                  ;; reagent
                  ;; metosin/compojure-api: SWAGGER! (prismatic) schema!
                  ;;
+                 ;;
+                 ;; RECOMMENDED Plugins
+                 ;;
                  ;; Recommended for :user profile (.lein/profiles.clj)
                  ;;
+                 ;; ancient
                  ;; kibit
                  ;; eastwood
+                 ;; cljfmt
                  [org.immutant/immutant "2.1.10"]
                  [org.clojure/tools.logging "0.4.1"]
                  [org.clojure/tools.namespace "0.2.11"]
                  [cheshire "5.8.0"]
-                 [com.taoensso/tufte "2.0.1"]
+                 ;; [com.taoensso/tufte "2.0.1"]
                  [ring/ring-core "1.7.0-RC1"]
                  [compojure "1.6.1"]
                  [funcool/suricatta "1.3.1"]
@@ -87,4 +92,14 @@
               ;; so cljs compilation results are picked up
               :resource-paths ["target"]
               :clean-targets ^{:protect false} ["target"]}
-             :uberjar {:aot :all}})
+
+             :production
+             {
+              ;; so cljs compilation results are picked up
+              :resource-paths ["cljs-resources"]
+              }
+
+             :uberjar {:aot :all}
+             }
+
+  )

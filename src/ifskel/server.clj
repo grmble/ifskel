@@ -10,7 +10,7 @@
    [immutant.web :as web]
    [ifskel.server.db :as db]
    [ring.middleware.resource]
-   [taoensso.tufte :as tufte :refer (defnp p profiled profile)]
+   ;; [taoensso.tufte :as tufte :refer (defnp p profiled profile)]
    )
   (:gen-class))
 
@@ -19,6 +19,7 @@
 ;; (tufte/add-basic-print-handler!)
 ;; (tufte/add-handler! :global tufte-log-handler)
 ;;
+#_
 (defn tufte-log-handler [{:keys [ns-str level pstats]}]
   ;; level: [0, 5]
   (let [logger (clojure.tools.logging.impl/get-logger log/*logger-factory* ns-str)]

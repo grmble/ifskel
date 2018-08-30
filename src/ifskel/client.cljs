@@ -14,7 +14,7 @@
                             :todos []}))
 
 (defn get-todos []
-  (go (let [response (<! (http/get "/todos"))]
+  (go (let [response (<! (http/get "todos"))]
         (js/console.log response)
         (when (= 200 (:status response))
           (swap! app-state assoc :todos (:body response))

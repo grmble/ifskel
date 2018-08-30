@@ -56,9 +56,10 @@ To build and deploy
 
     lein clean
     lein fig:min
+    cp target/public/cljs-out/dev-main.js cljs-resources/public/cljs-out/
     lein with-profile production immutant war -o C:\users\gj\wildfly-13.0.0.Final
 
-XXX this does not actually work yet
+XXX make this easier (lein shell && lein do)
 
 ## License
 

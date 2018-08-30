@@ -1,0 +1,4 @@
+# temp directory used for building war files
+# contains result of cljs compilation
+# do not check in
+*.js
