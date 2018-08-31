@@ -77,17 +77,25 @@
               :main ifskel.dev
 
               :dependencies [[ring/ring-devel "1.7.0-RC1"]
-                             [org.postgresql/postgresql "42.2.4"]
+                             [org.postgresql/postgresql "42.2.5"]
                              [ru.yandex.qatools.embed/postgresql-embedded "2.10-SNAPSHOT"]
 
 
                              [org.clojure/clojurescript "1.10.339"]
-                             [com.bhauman/figwheel-main "0.1.7"]
+                             [com.bhauman/figwheel-main "0.1.8"]
+
+
                              ;; won't work without trampoline
                              ;; trampoline doesn't work on windows
                              ;; [com.bhauman/rebel-readline-cljs "0.1.4"]
                              [reagent "0.8.1"]
                              [cljs-http "0.1.45"]
+
+                             ;; devcards
+                             [devcards "0.2.5"]
+                             ;; need these reacts for reagent 0.8.1
+                             [cljsjs/react-dom "16.3.2-0"]
+                             [cljsjs/react "16.3.2-0"]
                              ]
               :plugins [[lein-environ "1.1.0"]
                         [lein-shell "0.5.0"]]

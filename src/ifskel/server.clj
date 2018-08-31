@@ -10,6 +10,8 @@
    [immutant.web :as web]
    [ifskel.server.db :as db]
    [ring.middleware.resource]
+   [ring.middleware.content-type]
+   [ring.middleware.not-modified]
    ;; [taoensso.tufte :as tufte :refer (defnp p profiled profile)]
    )
   (:gen-class))
@@ -45,6 +47,9 @@ The compojure router and a file server on the directory public
 "}
   app (-> #'router
           (ring.middleware.resource/wrap-resource "public")
+          ;; XXX not much faster for development
+          (ring.middleware.content-type/wrap-content-type)
+          (ring.middleware.not-modified/wrap-not-modified)
           ))
 
 (defn -main

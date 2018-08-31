@@ -23,9 +23,9 @@
 (defn counter-component [counter]
    [:div
     [:h3 "Counter"]
-    [:p "The counter value is: " counter]
-    [:button {:on-click #(swap! app-state update :counter inc)} "Inc"]
-    [:button {:on-click #(swap! app-state update :counter dec)} "Dec"]
+    [:p "The counter value is: " @counter]
+    [:button {:on-click #(swap! counter inc)} "Inc"]
+    [:button {:on-click #(swap! counter dec)} "Dec"]
     ])
 
 (defn hello-component [world]
@@ -51,7 +51,7 @@
 (defn master-component []
   [:div
    [hello-component (r/cursor app-state [:hello])]
-   [counter-component (:counter @app-state)]
+   [counter-component (r/cursor app-state [:counter])]
    [todos-component (r/cursor app-state [:todos])]
    ])
 

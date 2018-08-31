@@ -50,6 +50,7 @@
       (throw (ex-info "unexpected uri prefix" {:pre pre :uri uri})))))
 
 (defn stop-embedded-pg []
+  (println "Stopping the embedded database")
   (.stop +embedded-pg+))
 
 

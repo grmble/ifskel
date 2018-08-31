@@ -1,5 +1,8 @@
 ^{:css-dirs ["resources/public/css"]
   :open-url "http://localhost:8080/"
+  :extra-main-files {:devcards {:main ifskel.devcards}}
   }
 {:main ifskel.client
- :asset-path "/cljs-out/dev"}
+ :asset-path "/cljs-out/dev"
+ :devcards true
+ }
